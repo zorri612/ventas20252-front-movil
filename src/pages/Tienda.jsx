@@ -1,52 +1,56 @@
 import API from "../services/api";
+import "../styles/tienda.css";
 
 export default function Tienda() {
   const producto = {
-    nombre: "Camiseta Premium",
+    nombre: "Monastery - Franz Polo Shirt White",
     descripcion: "Camiseta de algodón 100% orgánico.",
-    precio: 25.0, // número
-    imagen: "",
-};
-
+    precio: 25.0,
+    imagen: "/camiseta.jpg",
+  };
 
   const handleCompra = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    const res = await API.post(
-      "/sales",
-      {
-        product: producto.nombre,
-        price: 25.0, // mejor en número, no string con "$"
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    try {
+      const token = localStorage.getItem("token");
+      const res = await API.post(
+        "/sales",
+        {
+          product: producto.nombre,
+          price: producto.precio,
         },
-      }
-    );
-    console.log("Venta registrada:", res.data);
-    alert("Compra realizada con éxito");
-  } catch (err) {
-    console.error(err);
-    alert("Error al procesar la compra");
-  }
-};
-
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Venta registrada:", res.data);
+      alert("Compra realizada con éxito");
+    } catch (err) {
+      console.error(err);
+      alert("Error al procesar la compra");
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div className="bg-gray-100 p-4 rounded shadow w-full max-w-sm text-center">
-        <img src={producto.imagen} alt={producto.nombre} className="mb-4 rounded" />
-        <h2 className="text-xl font-bold mb-2">{producto.nombre}</h2>
-        <p className="text-gray-600 mb-2">{producto.descripcion}</p>
-        <p className="text-lg font-semibold mb-4">${producto.precio.toFixed(2)}</p>
-        <button
-          onClick={handleCompra}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Comprar
-        </button>
+    <div className="tienda">
+      {/* Header */}
+      <header className="header">
+        <h1>NKS Boutique</h1>
+        {/* <button>Carrito</button> */}
+      </header>
+
+      {/* Lista de productos */}
+      <div className="product-list">
+        <div className="product-card">
+          <img src={producto.imagen} alt={producto.nombre} />
+          <h2>{producto.nombre}</h2>
+          <p>{producto.descripcion}</p>
+          <p className="price">${producto.precio.toFixed(2)}</p>
+          <button onClick={handleCompra}>Comprar</button>
+        </div>
       </div>
+
     </div>
   );
 }
