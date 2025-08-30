@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom"; // 👈 Importa useNavigate
 import API from "../services/api";
 import "../styles/tienda.css";
 
 export default function Tienda() {
+  const navigate = useNavigate(); // 👈 Hook para redirigir
+
   const producto = {
     nombre: "Monastery - Franz Polo Shirt White",
     descripcion: "Camiseta de algodón 100% orgánico.",
@@ -32,12 +35,24 @@ export default function Tienda() {
     }
   };
 
+  // 👇 Lógica del botón Salir
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Limpia la sesión
+    navigate("/login"); // Redirige al login
+  };
+
   return (
     <div className="tienda">
       {/* Header */}
       <header className="header">
         <h1>NKS Boutique</h1>
-        {/* <button>Carrito</button> */}
+
+        <div className="header-right">
+          {/* <button>Carrito</button> */}
+          <button className="logout" onClick={handleLogout}>
+            Salir
+          </button>
+        </div>
       </header>
 
       {/* Lista de productos */}
@@ -50,7 +65,6 @@ export default function Tienda() {
           <button onClick={handleCompra}>Comprar</button>
         </div>
       </div>
-
     </div>
   );
 }

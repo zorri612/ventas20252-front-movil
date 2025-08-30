@@ -1,0 +1,95 @@
+/* Fondo con degradado */
+.login-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  padding: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 0;
+}
+
+/* Caja estilo glass */
+.login-form {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  margin-right: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(58, 38, 38, 0.25);
+  width: 100%;
+  max-width: 360px;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+.login-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+}
+
+/* Inputs */
+.login-input {
+  width: 100%;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(116, 185, 255, 0.6);
+}
+
+/* Botón */
+.login-button {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #0984e3, #6c5ce7);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Mensaje de error */
+.error-msg {
+  color: #ff7675;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
